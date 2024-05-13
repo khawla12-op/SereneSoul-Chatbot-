@@ -2,11 +2,29 @@
 {% load static %}
 {% block content %}
 <div class="container-fluid pt-4 px-4">
-    <div class="row vh-100 rounded align-items-end justify-content-center mx-0">
+    <div class="row vh-20 rounded justify-content-center mx-0" id="chat">
+        <!--  
+        <div class="col-xl-12 p-2">
+            <div class="h-10 bg-light rounded p-4">
+                <div class="d-flex align-items-center border-bottom py-3">
+                    <img class="rounded-circle flex-shrink-0" src="{% static 'img/user.jpg' %}" style="width: 40px; height: 40px;">
+                    <div class="w-100 ms-3">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-0">Jhon Doe</h6>
+                            <small>15 minutes ago</small>
+                        </div>
+                        <span>Short message goes here...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        -->
+    </div>
+    <div class="row vh-75 rounded align-items-end justify-content-center mx-0">
         <div class="col-xl-12 mb-3 p-2">
-            <div class="bg-light rounded p-4">
+            <div class="bg-light rounded p-4" >
                 <h6 class="mb-4">Start Chating</h6>
-                <div class="input-group mb-3">
+                <div class="input-group mb-3 ">
                     <input type="text" class="form-control h-400" placeholder="Can You ..." aria-label="Username" aria-describedby="basic-addon1">
                     <button class="input-group-text" id="basic-addon1">
                         <i class="fa fa-paper-plane"></i>
@@ -16,4 +34,6 @@
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="{% static 'js/client_chat.js' %}"></script>
 {% endblock content %}
