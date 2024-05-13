@@ -1,0 +1,44 @@
+{% extends "pluging.html" %}
+{% load static %}
+{% block content %}
+<body class="body-wrapper" data-spy="scroll" data-target=".privacy-nav">
+    <section class="user-login section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="block">
+                        <div class="image align-self-center">
+                            <img class="img-fluid" src="{% static 'img/heart.png' %}" alt="desk-image"></div>
+                        <div class="content text-center">
+                            <div class="logo">
+                                <a href="{% url 'client-index' %}"><img src="{% static 'img/logo.png' %}" width="150"></a>
+                            </div>
+                            <div class="title-text">
+                                <h3>Sign in to To Your Account</h3>
+                            </div>
+                            {% if messages %}
+                                {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }}">
+                                    {{ message }}
+                                </div>
+                                {% endfor %}
+                            {% endif %}
+                            <form method="POST">
+                                {% csrf_token %}
+                                {{form.username}}
+                                {{form.password}}
+                                <button class="btn btn-main-sm">sign in</button>
+                            </form>
+                            <div class="new-acount">
+                                <p>Don't Have an account? <a href="{% url 'client-signup' %}"> SIGN UP</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="scroll-top-to">
+        <i class="ti-angle-up"></i>
+    </div>
+{% endblock content %}

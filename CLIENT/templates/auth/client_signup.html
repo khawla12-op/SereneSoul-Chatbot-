@@ -1,0 +1,48 @@
+{% extends "pluging.html" %}
+{% load static %}
+{% block content %}
+<body class="body-wrapper" data-spy="scroll" data-target=".privacy-nav">
+    <section class="user-login section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12"><div class="scroll-top-to">
+                    <i class="ti-angle-up"></i>
+                    </div>
+                    <div class="block">
+                        <div class="image align-self-center"><img class="img-fluid" src="{% static 'img/heart.png' %}" alt="desk-image">
+                        </div>
+                        <div class="content text-center">
+                            <div class="logo">
+                                <a href="{% url 'client-index' %}"><img src="{% static 'img/logo.png' %}" width="150"></a>
+                            </div>
+                            <div class="title-text">
+                                <h3>Sign Up for New Account</h3>
+                            </div>
+                            {% if messages %}
+                                {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }}">
+                                    {{ message }}
+                                </div>
+                                {% endfor %}
+                            {% endif %}
+                            <form method="POST">
+                                {% csrf_token %}
+                                {{form.username}}
+                                {{form.email}}
+                                {{form.password1}}
+                                {{form.password2}}
+                                <button class="btn btn-main-md">sign up</button>
+                            </form>
+                            <div class="new-acount">
+                                <p>Anready have an account? <a href="{% url 'client-login' %}">SIGN IN</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="scroll-top-to">
+        <i class="ti-angle-up"></i>
+    </div>
+{% endblock content %}
