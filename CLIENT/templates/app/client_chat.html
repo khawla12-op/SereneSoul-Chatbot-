@@ -24,12 +24,15 @@
         <div class="col-xl-12 mb-3 p-2">
             <div class="bg-light rounded p-4" >
                 <h6 class="mb-4">Start Chating</h6>
-                <div class="input-group mb-3 ">
-                    <input type="text" class="form-control h-400" placeholder="Can You ..." aria-label="Username" aria-describedby="basic-addon1">
-                    <button class="input-group-text" id="basic-addon1">
-                        <i class="fa fa-paper-plane"></i>
-                    </button>
-                </div>
+                <form action="#" id="chat_form">
+                    {% csrf_token %}
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control h-400" placeholder="Can You ..." aria-label="Username" aria-describedby="basic-addon1">
+                        <button class="input-group-text" id="basic-addon1" type="submit">
+                            <i class="fa fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

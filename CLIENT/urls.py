@@ -18,6 +18,8 @@ urlpatterns = [
                         next_page='client-login') , 
                         name='client-logout'
         ),
-    path("chat/", views.client_chat , name="client-chat")
+    path("chat/", views.client_chat , name="client-chat"),
+    path("api/send_message/", views.client_send_message , name="client-send-message"),
+    path("api/get_message/", views.client_get_message , name="client-get-message"),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

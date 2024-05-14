@@ -34,8 +34,14 @@
                 <a href="{% url 'client-index' %}" class="navbar-brand mx-4 mb-3">
                     <img src="{% static 'img/new_logo.png' %}" width="150">
                 </a>
-                <div class="navbar-nav w-100">
-                    <a href="index.html" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                <div class="navbar-nav w-100" id="chat-messages">
+                    {% for conversation in conversations %}
+                        <li class="nav-item nav-link" data-chat-user-id="{{conversation.pk}}">
+                            <!-- icon for delete -->
+                            <i class="fa fa-trash"></i>
+                            {{conversation.name}}</a>
+                        </li>
+                    {% endfor %}
                 </div>
             </nav>
         </div>

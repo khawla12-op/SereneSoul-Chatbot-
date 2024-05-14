@@ -1,7 +1,14 @@
 from django.shortcuts import render , redirect
 from django.contrib.auth.decorators import login_required
-from .forms import UserLoginForm , UserRegisterForm
+from .forms import  UserRegisterForm
 from django.contrib import messages
+from .models import Conversation, Message
+from .serene import Serene
+from django.http import JsonResponse
+from django.core import serializers
+
+# instantiate the chatbot
+chatbot = Serene()
 
 # Create your views here.
 def client_index(request):
@@ -26,7 +33,30 @@ def client_signup(request):
 
 @login_required
 def client_chat(request):
-    return render(request , "app/client_chat.html")
+    conversations = Conversation.objects.filter(user=request.user)
+    return render(request , "app/client_chat.html", {'conversations': conversations})
+
+# Chat view
+def client_send_message(request):
+    conversation = Conversation.objects.get(id=request.POST.get('conversation_id'))
+    Message.objects.create(
+        content = request.POST.get('content'),
+        conversation = conversation
+    )
+    predict = chatbot.make_prediction(request.POST.get('content'))
+    message = Message.objects.create(
+        content = predict,
+        conversation = conversation
+    )
+    data = serializers.serialize('json', [message,])
+    return JsonResponse(data, safe=False)
+
+def client_get_message(request):
+    conversation_id = request.GET.get('conversation_id')
+    conversation = Conversation.objects.get(id=conversation_id)
+    messages = Message.objects.filter(conversation=conversation)
+    data = serializers.serialize('json', messages)
+    return JsonResponse(data, safe=False)
 
 # Error 404
 def error_404(request, exception):
