@@ -7,6 +7,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
+    <link rel="icon" href="{% static 'img/conv_logo.png' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -34,12 +35,27 @@
                 <a href="{% url 'client-index' %}" class="navbar-brand mx-4 mb-3">
                     <img src="{% static 'img/new_logo.png' %}" width="150">
                 </a>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="navbar-nav w-100">
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <div class="d-flex mb-3">
+                                <input name="name" class="form-control bg-transparent" type="text" placeholder="Enter Conversation Name">
+                                <button type="submit" class="btn btn-primary ms-2">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
                 <div class="navbar-nav w-100" id="chat-messages">
                     {% for conversation in conversations %}
                         <li class="nav-item nav-link" data-chat-user-id="{{conversation.pk}}">
-                            <!-- icon for delete -->
-                            <i class="fa fa-trash"></i>
-                            {{conversation.name}}</a>
+                            <a href="{% url 'client-delete' conversation.pk %}">
+                                <i class="fa fa-trash">
+                                </i>
+                            </a>
+
+                            
+                            {{conversation.name}}
                         </li>
                     {% endfor %}
                 </div>

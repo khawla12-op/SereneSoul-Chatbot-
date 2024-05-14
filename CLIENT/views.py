@@ -33,6 +33,12 @@ def client_signup(request):
 
 @login_required
 def client_chat(request):
+    if request.method == 'POST':
+        Conversation.objects.create(
+            user=request.user ,
+            name = request.POST.get('name')
+            )
+        return redirect('client-chat')
     conversations = Conversation.objects.filter(user=request.user)
     return render(request , "app/client_chat.html", {'conversations': conversations})
 
@@ -57,6 +63,11 @@ def client_get_message(request):
     messages = Message.objects.filter(conversation=conversation)
     data = serializers.serialize('json', messages)
     return JsonResponse(data, safe=False)
+
+def client_delete_conversation(request ,pk):
+    conversation = Conversation.objects.get(id=pk)
+    conversation.delete()
+    return redirect('client-chat')
 
 # Error 404
 def error_404(request, exception):
