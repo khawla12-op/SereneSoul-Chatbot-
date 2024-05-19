@@ -1,0 +1,35 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block page_content %}
+<div  class="py-2 bg-SereneBeige pl-2 max-w-full">
+    <div class="flex flex-wrap justify-start items-start gap-4  overflow-y-auto">
+        {% for post in posts %}
+            <div class="w-96 bg-white shadow-md border border-gray-200 rounded-lg">
+                <a href="#">
+                    <img class="h-60 w-full object-cover rounded-lg" src="/{{ post.image }}" alt="{{ post.title }}">
+                </a>
+                <div class="p-4">
+                    <!-- Author's Section -->
+                    <div class="flex items-center space-x-4 mb-4">
+                        <!-- Author Avatar -->
+                        <div class="h-10 w-10 rounded-full bg-gray-200 border-2 border-SerenePink flex-shrink-0">
+                            <img class="rounded-full" src="{{ post.author.image.url }}" alt="{{post.author.first_name}} {{post.author.first_name}}">
+                        </div>
+                        <!-- Author Name -->
+                        <span class="text-sm font-medium text-SerenePink">{{ post.author }}</span>
+                    </div>
+                    <!-- Post Title -->
+                    <a href="#">
+                        <h5 class="text-SereneGreen font-bold text-2xl tracking-tight mb-2">{{ post.title }}</h5>
+                    </a>
+                    <!-- Post Content -->
+                    <p class="text-gray-700">{{ post.content | truncatechars:64 }}</p>
+                    <!-- Read More Link -->
+                    <a class="block text-center mt-4 text-white bg-SerenePink hover:bg-SerenePink-800 focus:ring-4 focus:ring-SerenePink-300 font-medium rounded-lg text-sm px-3 py-2" href="{% url 'blog_details' post.id %}">Read more</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock page_content %}

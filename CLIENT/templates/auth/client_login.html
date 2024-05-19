@@ -8,7 +8,7 @@
                 <div class="col-12">
                     <div class="block">
                         <div class="image align-self-center">
-                            <img class="img-fluid" src="{% static 'img/heart.png' %}" alt="desk-image"></div>
+                            <img class="img-fluid" src="{% static 'img/login_bg.jpg' %}" alt="desk-image" ></div>
                         <div class="content text-center">
                             <div class="logo">
                                 <a href="{% url 'client-index' %}"><img src="{% static 'img/new_logo.png' %}" width="150"></a>
@@ -27,10 +27,14 @@
                                 {% csrf_token %}
                                 {{form.username}}
                                 {{form.password}}
-                                <button class="btn btn-main-sm">sign in</button>
+                                <button class="btn btn-main-sm"style="background-color: #BE959F; border: none; color: white; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer; border-radius: 50px; transition: background-color 0.3s ease;">Sign in</button>
                             </form>
                             <div class="new-acount">
-                                <p>Don't Have an account? <a href="{% url 'client-signup' %}"> SIGN UP</a></p>
+                                <p>Don't Have an account?
+                                <a class="btn btn-round-full" href="{% url 'client-signup' %}" style="background-color: #BE959F; border: none; color: white; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer; border-radius: 50px; transition: background-color 0.3s ease;">
+                                 SIGN UP<i class="icofont-simple-right ml-2" style="margin-left: 10px;"></i>
+                                </a>
+                            </p>
                             </div>
                         </div>
                     </div>

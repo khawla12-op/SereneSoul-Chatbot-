@@ -1,0 +1,44 @@
+{% extends "blog.html" %}
+{% load static %}
+
+{% block page_title %}
+    {% comment %} <h3>{{ post.title }}</h3> {% endcomment %}
+{% endblock page_title %}
+
+{% block page_content %}
+<div class=" flex space-x-4 h-full overflow-y-auto">
+    <div class="flex-1 w-full overflow-y-auto">
+        <div class="">
+            <div class="p-5 bg-white shadow-md border border-gray-200 rounded-lg  m-4">
+                <div class="flex items-center justify-between">
+                    <div class="w-full flex items-center justify-between mb-4">
+                        <!-- Author Avatar and Name -->
+                        <div class="flex items-center space-x-4">
+                            <div class="h-10 w-10 rounded-full bg-gray-200 border-2 border-blue-400 flex-shrink-0">
+                                <img class="rounded-full" src="{{ post.author.image.url }}" alt="{{ post.author.first_name }} {{ post.author.last_name }}">
+                            </div>
+                            <span class="text-sm font-medium text-gray-600">{{ post.author }}</span>
+                        </div>
+                        <!-- Published Date -->
+                        <p class="text-sm font-medium text-gray-600 flex-shrink-0">{{ post.published_date }}</p>
+                    </div>                    
+                </div>
+                <a href="#">
+                    <img class="rounded-t-lg" src="{{ post.image.url }}" alt="{{post.title}}">
+                </a>
+                <div>
+                    <a href="#">
+                        <h5 class="text-gray-900 font-bold text-2xl tracking-tight mb-2">{{ post.title }}</h5>
+                    </a>
+                    <p class="font-normal text-gray-700 mb-3">{{ post.content }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="flex-1 overflow-y-auto">
+        {%block comments%}
+            {% include 'comments.html' %}
+        {%endblock comments%}
+    </div>
+</div>
+{% endblock page_content %}
